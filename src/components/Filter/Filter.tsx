@@ -1,11 +1,10 @@
 import React, { Fragment, useState } from "react";
-import { Chevron } from "./Filter.style";
+import { Chevron, OptionText } from "./Filter.style";
 import {
   Container,
   FilterContainer,
-  OptionContainer,
-  OptionText,
 } from "./Filter.style";
+import FilterOption from "./FilterOption";
 
 interface Option {
   label: string;
@@ -56,7 +55,6 @@ const Filter = ({ label, options, values, selectOptions } : Props) => {
               ))}
             </div>
             </>
-           
           ) : (
             <div>
               <FilterOption
@@ -84,31 +82,5 @@ const Filter = ({ label, options, values, selectOptions } : Props) => {
   );
 };
 
-interface FilterOptionProps {
-  label: string;
-  children?: React.ReactNode;
-  values: string[];
-  selectOptions: (select: string) => void;
-}
-
-const FilterOption: React.FC<FilterOptionProps> = ({
-  label,
-  values,
-  selectOptions,
-}) => {
-  const isChecked = values.includes(label);
-  console.log(isChecked)
-  console.log(values);
-  return (
-    <OptionContainer>
-      <input
-        type="checkbox"
-        checked={isChecked}
-        onChange={() => selectOptions(label)}
-      />
-      <span>{label}</span>
-    </OptionContainer>
-  );
-};
 
 export default Filter;

@@ -9,6 +9,7 @@ export const StyledSearch = styled.label`
   h2 {
     margin: 0 10px;
     font-size: 20px;
+    color: black;
   }
 
   input {

@@ -27,6 +27,19 @@ export const FilterContainer = styled.div`
   cursor: pointer;
 `;
 
+
+export const FilterWrapper = styled.div`
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
+  width: 170px;
+  height: 40px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+
 export const Text = styled.p`
   font-size: 14px;
   font-weight: 500;

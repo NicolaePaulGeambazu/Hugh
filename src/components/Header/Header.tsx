@@ -1,5 +1,4 @@
 import { HeaderContainer, Image, ImageContainer, SettingsContainer, SettingsText } from "./Header.style";
-
 export const Header = () => {
   return (
     <HeaderContainer>
