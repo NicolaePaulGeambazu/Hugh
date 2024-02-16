@@ -67,15 +67,19 @@ const DashboardPage = () => {
     if (hasAssetClass) {
       filtered = filtered.filter((item) => filters.includes(item.asset_class));
     }
-    const allRegions = Object.values(REGIONS).flatMap(Object.keys);
-    const hasRegion = intersection(filters, allRegions).length > 0;
+    const getAllRegions = (regions: { [key: string]: any }): string[] => {
+      return Object.entries(regions).flatMap(([key, value]) =>
+        Array.isArray(value)
+          ? [key, ...value]
+          : [key, ...getAllRegions(value)]
+      );
+    };
+    
+    const hasRegion = intersection(filters, getAllRegions(REGIONS)).length > 0;
     if (hasRegion) {
-      filtered = filtered.filter((item) => {
-        return Object.values(REGIONS).some((subRegions) => {
-          return Object.keys(subRegions).includes(item.region) && filters.includes(item.region);
-        });
-      });
+      filtered = filtered.filter((item) => filters.includes(item.region));
     }
+    
     
 
     const hasStyle = intersection(filters, STYLES).length === 1;
