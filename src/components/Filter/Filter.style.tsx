@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { FaChevronDown } from "react-icons/fa";
 
 interface FilterProps {
-    isOpen: boolean;
+  isOpen: boolean;
 }
 
 export const Container = styled.div`
@@ -46,7 +46,7 @@ export const Text = styled.p`
   margin: 0;
 `;
 
-export const Chevron = styled(FaChevronDown)<FilterProps>`
+export const Chevron = styled(FaChevronDown) <FilterProps>`
   color: #d0043c;
   transition: transform 0.2s;
 

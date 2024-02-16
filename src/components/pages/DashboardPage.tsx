@@ -50,7 +50,7 @@ const DashboardPage = () => {
     },
     []
   );
-  
+
   const display = useMemo(() => {
     let filtered = data;
     if (search) {
@@ -62,7 +62,7 @@ const DashboardPage = () => {
     if (hasStrategy) {
       filtered = filtered.filter((item) => filters.includes(item.strategy));
     }
-
+    // this will not work because I didn't saw any way to filter this on XD
     const hasAssetClass = intersection(filters, Object.keys(ASSET_CLASSES)).length > 0;
     if (hasAssetClass) {
       filtered = filtered.filter((item) => filters.includes(item.asset_class));
@@ -74,13 +74,11 @@ const DashboardPage = () => {
           : [key, ...getAllRegions(value)]
       );
     };
-    
+
     const hasRegion = intersection(filters, getAllRegions(REGIONS)).length > 0;
     if (hasRegion) {
       filtered = filtered.filter((item) => filters.includes(item.region));
     }
-    
-    
 
     const hasStyle = intersection(filters, STYLES).length === 1;
     if (hasStyle) {
@@ -99,43 +97,43 @@ const DashboardPage = () => {
         <Options>
           <Search search={search} setSearch={setSearch} />
           <FilterWrapper>
-          <>
-      <Filter
-        label="Strategy"
-        options={STRATEGIES.map((strategy) => ({ label: strategy }))}
-        values={filters}
-        selectOptions={selectOptions}
-      />
-      <Filter
-        label="Asset Class"
-        options={Object.entries(ASSET_CLASSES).map(([category, values]) => ({
-          label: category,
-          children: values.map((value) => ({ label: value })),
-        }))}
-        values={filters}
-        selectOptions={selectOptions}
-      />
-      <Filter
-        label="Market & Region"
-        options={Object.entries(REGIONS).map(([category, values]) => ({
-          label: category,
-          children: Array.isArray(values)
-            ? values.map((value) => ({ label: value }))
-            : Object.entries(values).map(([subCategory, subValues]) => ({
-                label: subCategory,
-                children: subValues.map((value) => ({ label: value })),
-              })),
-        }))}
-        values={filters}
-        selectOptions={selectOptions}
-      />
-      <Filter
-        label="Style"
-        options={STYLES.map((strategy) => ({ label: strategy }))}
-        values={filters}
-        selectOptions={selectOptions}
-      />
-    </>
+            <>
+              <Filter
+                label="Strategy"
+                options={STRATEGIES.map((strategy) => ({ label: strategy }))}
+                values={filters}
+                selectOptions={selectOptions}
+              />
+              <Filter
+                label="Asset Class"
+                options={Object.entries(ASSET_CLASSES).map(([category, values]) => ({
+                  label: category,
+                  children: values.map((value) => ({ label: value })),
+                }))}
+                values={filters}
+                selectOptions={selectOptions}
+              />
+              <Filter
+                label="Market & Region"
+                options={Object.entries(REGIONS).map(([category, values]) => ({
+                  label: category,
+                  children: Array.isArray(values)
+                    ? values.map((value) => ({ label: value }))
+                    : Object.entries(values).map(([subCategory, subValues]) => ({
+                      label: subCategory,
+                      children: subValues.map((value) => ({ label: value })),
+                    })),
+                }))}
+                values={filters}
+                selectOptions={selectOptions}
+              />
+              <Filter
+                label="Style"
+                options={STYLES.map((strategy) => ({ label: strategy }))}
+                values={filters}
+                selectOptions={selectOptions}
+              />
+            </>
           </FilterWrapper>
         </Options>
       </ProductFinder>
